@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>一见 | 每天一部豆瓣高分</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+      <link href="/templates/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="/templates/js/bootstrap.min.js"></script>
+
+      <script type="text/javascript">
+            function copyUrl(url)
+            {
+            var Url2=document.getElementById(url);
+            Url2.select(); // 选择对象
+            document.execCommand("Copy"); // 执行浏览器复制命令
+            // alert("已复制好，可贴粘。");
+            }
+      </script>
+ 
+   </head>
+
+   <body>
+      <!-- 导航栏 -->
+      <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="#">一见 | 每天一部豆瓣高分</a>
+          </div>
+          </div>
+      </nav>
+      
+
+      <div class="container">
+
+         <!-- 这是那个jumbotron -->
+         <div class="jumbotron masthead">
+              <h1> 一见|电影|如故</h1>
+              <p> 每天一部豆瓣高分</p>
+              <p> 不负你的电影时光</p>
+              <p>《星际穿越》| 诺兰的维度，也只有银河彼端，群星尽头可达。</p>
+             
+         </div>
+
+         <!-- 选择按钮 -->
+        <!--  <p>
+           <button type="button" class="btn btn-primary btn-lg" >next</button>
+         </p> -->
+         <!-- 这里是一个master图片 -->
+         <div>
+            <img style="width: 100%;" src="/templates/img/1.webp" 
+            class="img-rounded center-block">
+         </div>
+
+         <!-- 这里是一个图片小列表 -->
+         <div>
+            <ul style="list-style: none;margin: 0;padding: 0;display: flex;justify-content: space-between;">
+               <li style="margin-top: 10px;">
+                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/1.webp">
+               </li>
+               <li style="margin-top: 10px;">
+                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/2.webp">
+               </li>
+               <li style="margin-top: 10px;">
+                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/3.webp">
+               </li>
+               <li style="margin-top: 10px;">
+                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/4.webp">
+               </li>
+                <li style="margin-top: 10px;">
+                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/5.webp">
+               </li>
+               
+            </ul>
+            <style>
+               li~li{margin-left: 10px}
+            </style>
+            
+         </div>
+         <!-- 这里是两个按钮 -->
+
+         <div class="row" style="margin-top: 40px;">
+            <div class="col-md-6 " >
+               <button type="button" style="width: 35%" class="btn btn-primary btn-lg center-block" 
+                  title="popover title" data-container="body" data-toggle="popover" data-placement="bottom"
+                  data-content="复制成功，去迅雷粘贴即可" onClick="copyUrl('url1')" >普清版 | 1.21GB</button>
+            </div>
+            <div class="col-md-6 " >
+               <button type="button" style="width: 35%" class="btn btn-primary btn-lg center-block" 
+               	  title="popover title" data-container="body" data-toggle="popover" data-placement="bottom"
+                  data-content="复制成功，去迅雷粘贴即可" onClick="copyUrl('url2')" >高清版 | 3.61GB</button>
+            </div>
+         </div>
+
+
+
+         <!-- 这里是footer -->
+         <div style="margin-top:100px;" class="container-fluid">
+            <hr>
+		        <p style="text-align: right;">
+		           xy_version_6.4 | 2018.02.24
+		        </p>
+
+         </div>
+
+
+         <!-- 测试弹出框 -->
+         <script>
+         $(function (){
+             $("[data-toggle='popover']").popover();
+         });
+         </script>
+         <!-- 测试弹出框 -->
+
+
+
+         <!-- 这是两段url的文本 -->
+         <textarea cols="20" rows="10" id="url1" style="opacity: 0;" >
+         thunder://QUFmdHA6Ly95Z2R5ODp5Z2R5OEB5MjAxLmR5Z29kLm9yZzoxMjE4L1slRTklOTglQjMlRTUlODUlODklRTclOTQlQjUlRTUlQkQlQjF3d3cueWdkeTguY29tXS4lRTYlOTglOUYlRTklOTklODUlRTclQTklQkYlRTglQjYlOEEuQkQuNzIwcC4lRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTclRTUlQjklOTUucm12Ylpa
+         </textarea>
+         <textarea cols="20" rows="10" id="url2" style="opacity: 0;" >
+         http://www.baiduyund.com/forum.php?mod=attachment&aid=NjI1OTF8MDE4MjRjMDF8MTUxOTQ2MTQzNnwwfDY1MzU4
+         </textarea>
+         <!-- 这是两段url的文本 -->
+
+      </div>
+
+   </body>
+</html>
