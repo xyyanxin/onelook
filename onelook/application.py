@@ -7,11 +7,12 @@ from flask import render_template
 
 from onelook.extensions import mongo_db
 
-from onelook.utils.helpers import choice_movie_by_date
+from onelook.utils.movie import Movie
 
 
 
 app = Flask(__name__,static_folder='templates')
+app.config['DEBUG'] = True
 
 
 
@@ -23,8 +24,13 @@ def index():
 
 @app.route('/get_data')
 def get_data():
-    today = date.today()
-    subject_id = choice_movie_by_date(today)
-    item = mongo_db.movie.find_one({"subject_id":subject_id})
-    return render_template('index.html',item=item)
+    # 一天一影
+    the_movie = Movie(date.today())
 
+    item = {}
+    item['subject_id'] = the_movie.subject_id
+    item['name'] = the_movie.name
+    item['comment_title'] = the_movie.comment_title
+    item['img_store_path'] = the_movie.poster_store_path
+
+    return render_template('index.html',item=item)

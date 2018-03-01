@@ -38,7 +38,11 @@
               <h1> 一见|光影|如故</h1>
               <p> 每天一部豆瓣高分</p>
               <p> 不负你的电影时光</p>
+              {% if item %}
               <p>《{{item.name}}》| {{item.comment_title[0]}}</p>
+              {% else %}
+              <p> --| --</p>
+              {% endif %}
              
          </div>
 
@@ -48,28 +52,18 @@
          </p> -->
          <!-- 这里是一个master图片 -->
          <div>
-            <img style="width: 100%;" src="/templates/img/1.webp" 
+            <img style="width: 100%;" src="{{item['img_store_path'][0]}}"
             class="img-rounded center-block">
          </div>
 
          <!-- 这里是一个图片小列表 -->
          <div>
             <ul style="list-style: none;margin: 0;padding: 0;display: flex;justify-content: space-between;">
+                {% for i in item['img_store_path'][1:]%}
                <li style="margin-top: 10px;">
-                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/1.webp">
+                   <img  style="width: 100%;"  class="img-rounded" src="{{i}}">
                </li>
-               <li style="margin-top: 10px;">
-                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/2.webp">
-               </li>
-               <li style="margin-top: 10px;">
-                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/3.webp">
-               </li>
-               <li style="margin-top: 10px;">
-                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/4.webp">
-               </li>
-                <li style="margin-top: 10px;">
-                   <img  style="width: 100%;"  class="img-rounded" src="/templates/img/5.webp">
-               </li>
+               {% endfor %}
                
             </ul>
             <style>

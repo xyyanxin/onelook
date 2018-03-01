@@ -4,7 +4,7 @@ Program: onelook
 Description: config
 Author: XY - mailyanxin@gmail.com
 Date: 2018-02-28 11:20:11
-Last modified: 2018-02-28 15:37:52
+Last modified: 2018-02-28 17:47:56
 Python release: 3.4.3
 """
 import os
@@ -27,7 +27,7 @@ class DefaultConfig(object):
     # ------------------------------
     # There is a whole bunch of more settings available here:
     # http://flask.pocoo.org/docs/0.11/config/#builtin-configuration-values
-    DEBUG = False
+    DEBUG = True
     TESTING = False
 
     # Server Name
@@ -113,21 +113,6 @@ class DefaultConfig(object):
     WTF_CSRF_ENABLED = True
     WTF_CSRF_SECRET_KEY = "reallyhardtoguess"
 
-    # Full-Text-Search
-    # ------------------------------
-    # This will use the "whoosh_index" directory to store the search indexes
-    WHOOSHEE_DIR = os.path.join(basedir, "whoosh_index", py_version)
-    # How long should whooshee try to acquire write lock? (defaults to 2)
-    WHOOSHEE_WRITER_TIMEOUT = 2
-    # Minimum number of characters for the search (defaults to 3)
-    WHOOSHEE_MIN_STRING_LEN = 3
-
-    # Auth
-    # ------------------------------
-    LOGIN_VIEW = "auth.login"
-    REAUTH_VIEW = "auth.reauth"
-    LOGIN_MESSAGE_CATEGORY = "info"
-    REFRESH_MESSAGE_CATEGORY = "info"
 
     # The name of the cookie to store the “remember me” information in.
     REMEMBER_COOKIE_NAME = "remember_token"
@@ -178,45 +163,3 @@ class DefaultConfig(object):
     #MAIL_USERNAME = "your_username@gmail.com"
     #MAIL_PASSWORD = "your_password"
     #MAIL_DEFAULT_SENDER = ("Your Name", "your_username@gmail.com")
-
-    # Local SMTP Server
-    MAIL_SERVER = "localhost"
-    MAIL_PORT = 25
-    MAIL_USE_SSL = False
-    MAIL_USE_TLS = False
-    MAIL_USERNAME = "noreply@example.org"
-    MAIL_PASSWORD = ""
-    MAIL_DEFAULT_SENDER = ("Default Sender", "noreply@example.org")
-    # Where to logger should send the emails to
-    ADMINS = ["admin@example.org"]
-
-    # Redis
-    # ------------------------------ #
-    # If redis is enabled, it can be used for:
-    #   - Sending non blocking emails via Celery (Task Queue)
-    #   - Caching
-    #   - Rate Limiting
-    REDIS_ENABLED = False
-    REDIS_URL = "redis://localhost:6379"  # or with a password: "redis://:password@localhost:6379"
-    REDIS_DATABASE = 0
-
-    # Celery
-    CELERY_BROKER_URL = 'redis://localhost:6379'
-    CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-    if not REDIS_ENABLED: CELERY_ALWAYS_EAGER = True
-
-    # FlaskBB Settings
-    # ------------------------------ #
-    # URL Prefixes
-    FORUM_URL_PREFIX = ""
-    USER_URL_PREFIX = "/user"
-    MESSAGE_URL_PREFIX = "/message"
-    AUTH_URL_PREFIX = "/auth"
-    ADMIN_URL_PREFIX = "/admin"
-
-
-    # Remove dead plugins - useful if you want to migrate your instance
-    # somewhere else and forgot to reinstall the plugins.
-    # If set to `False` it will NOT remove plugins that are NOT installed on
-    # the filesystem (virtualenv, site-packages).
-    REMOVE_DEAD_PLUGINS = False
