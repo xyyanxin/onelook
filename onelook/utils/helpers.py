@@ -4,7 +4,7 @@ Program: onelook
 Description: onelook helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-02-28 10:51:33
-Last modified: 2018-03-02 10:27:34
+Last modified: 2018-03-02 14:10:26
 Python release: 3.4.3
 """
 import os
@@ -36,3 +36,5 @@ def get_today_str():
     today = date.today()
     return today.strftime('%Y%m%d')
 
+def get_font_path():
+    return os.path.join(current_app.root_path,'templates','statics','fonts','XinH_CuJW.TTF'),

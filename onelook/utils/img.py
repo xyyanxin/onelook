@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-02 13:50:55
+Last modified: 2018-03-02 14:34:06
 Python release: 3.4.3
 """
 import os
@@ -15,6 +15,7 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 from flask import current_app
+from .helpers import get_font_path
 
 class Img(object):
     '''
@@ -27,8 +28,7 @@ class Img(object):
             'score_top_conner': 300,
             'logo_left_conner': 430,
             'logo_top_conner': 770,
-            'font_path': '/home/xy/workspace/onelook/onelook/templates/statics/fonts/XinH_CuJW.TTF',
-            'test_font_size': 15,
+            'text_font_size': 15,
             'score_font_size': 35,
             'logo_font_size': 20,
             'img_width': 800,
@@ -46,27 +46,36 @@ class Img(object):
     def add_score(self,score):
         im = Image.open(self.path)
         draw = ImageDraw.Draw(im)
-        font = ImageFont.truetype(Img.params['font_path'],Img.params['score_font_size'])
+        font = ImageFont.truetype(os.path.join(current_app.root_path,'templates','statics','fonts','XinH_CuJW.TTF'),Img.params['score_font_size'])
         draw.text((Img.params['score_left_conner'],Img.params['score_top_conner']),text=score,font=font,fill='black')
         im.save(self.path)
 
     def add_comment_title(self,comment_title):
         im = Image.open(self.path)
         draw = ImageDraw.Draw(im)
-        font = ImageFont.truetype(Img.params['font_path'],Img.params['test_font_size'])
+        font = ImageFont.truetype(os.path.join(current_app.root_path,'templates','statics','fonts','XinH_CuJW.TTF'),Img.params['text_font_size'])
         draw.text((Img.params['text_left_conner'],Img.params['text_top_conner']),text=comment_title,font=font,fill='black')
         im.save(self.path)
 
 
     def reset_size(self):
         im = Image.open(self.path)
+        # 按比例缩放
         im = im.resize((Img.params['img_width'],Img.params['img_height']))
+        # or 抠图然后缩放
+        #origin_size = im.size
+        #im = im.crop((
+        #    origin_size[0]/2 - Img.params['img_width']/2,
+        #    origin_size[1]/2 - Img.params['img_height']/2,
+        #    origin_size[0]/2 + Img.params['img_width']/2,
+        #    origin_size[1]/2 + Img.params['img_height']/2,
+        #    ))
         im.save(self.path)
 
     def add_logo(self):
         im = Image.open(self.path)
         draw = ImageDraw.Draw(im)
-        font = ImageFont.truetype(Img.params['font_path'],Img.params['logo_font_size'])
+        font = ImageFont.truetype(os.path.join(current_app.root_path,'templates','statics','fonts','XinH_CuJW.TTF'),Img.params['logo_font_size'])
         draw.text((Img.params['logo_left_conner'],Img.params['logo_top_conner']),text=Img.params['logo_text'],font=font,fill='black')
         im.save(self.path)
 
