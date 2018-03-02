@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-02 11:20:14
+Last modified: 2018-03-02 11:33:18
 Python release: 3.4.3
 """
 import os
@@ -70,7 +70,7 @@ class Movie(object):
             img = Img(poster_path)
             current_app.logger.info('start reset size')
             img.reset_size()
-            current_app.logger.info('end reset size')
+            img.add_logo()
             ret.append(poster_path)
         # 对首张图片进行模糊并加入文字
         img = Img(ret[0])
