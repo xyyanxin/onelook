@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-02 11:44:53
+Last modified: 2018-03-02 13:50:55
 Python release: 3.4.3
 """
 import os
@@ -57,9 +57,6 @@ class Img(object):
         draw.text((Img.params['text_left_conner'],Img.params['text_top_conner']),text=comment_title,font=font,fill='black')
         im.save(self.path)
 
-    def get_font_path(self):
-        font_path = os.path.join(current_app.root_path, 'templates','statics','fonts','XinH_CuJW.TTF')
-        return font_path
 
     def reset_size(self):
         im = Image.open(self.path)
