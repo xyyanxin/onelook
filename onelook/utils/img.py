@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-01 15:51:45
+Last modified: 2018-03-02 11:21:42
 Python release: 3.4.3
 """
 import os
@@ -21,19 +21,20 @@ class Img(object):
     local origin img
     '''
     params = {
-            'text_left_conner': 1,
-            'text_top_conner': 1,
-            'score_left_conner': 1,
-            'score_top_conner': 1,
-            'text_font_size': 10,
+            'text_left_conner': 20,
+            'text_top_conner': 600,
+            'score_left_conner': 100,
+            'score_top_conner': 300,
             'font_path': '/home/xy/workspace/onelook/onelook/templates/statics/fonts/XinH_CuJW.TTF',
-            'font_size': 21,
-
+            'test_font_size': 12,
+            'score_font_size': 35,
+            'img_width': 800,
+            'img_height': 800,
             }
     def __init__(self,store_path):
         self.path = store_path
 
-    def gauss_blur(self,radius=5):
+    def gauss_blur(self,radius=3):
         im = Image.open(self.path)
         im = im.filter(ImageFilter.GaussianBlur(radius=radius))
         im.save(self.path)
@@ -41,14 +42,14 @@ class Img(object):
     def add_score(self,score):
         im = Image.open(self.path)
         draw = ImageDraw.Draw(im)
-        font = ImageFont.truetype(Img.params['font_path'],Img.params['font_size'])
-        draw.text((Img.params['text_left_conner'],Img.params['text_top_conner']),text=score,font=font,fill='black')
+        font = ImageFont.truetype(Img.params['font_path'],Img.params['score_font_size'])
+        draw.text((Img.params['score_left_conner'],Img.params['score_top_conner']),text=score,font=font,fill='black')
         im.save(self.path)
 
     def add_comment_title(self,comment_title):
         im = Image.open(self.path)
         draw = ImageDraw.Draw(im)
-        font = ImageFont.truetype(Img.params['font_path'],Img.params['font_size'])
+        font = ImageFont.truetype(Img.params['font_path'],Img.params['test_font_size'])
         draw.text((Img.params['text_left_conner'],Img.params['text_top_conner']),text=comment_title,font=font,fill='black')
         im.save(self.path)
 
@@ -56,7 +57,13 @@ class Img(object):
         font_path = os.path.join(current_app.root_path, 'templates','statics','fonts','XinH_CuJW.TTF')
         return font_path
 
+    def reset_size(self):
+        im = Image.open(self.path)
+        im = im.resize((Img.params['img_width'],Img.params['img_height']))
+        im.save(self.path)
+
+
 
 if __name__ == '__main__':
-    img = Img('/home/xy/workspace/onelook/onelook/templates/statics/poster_img/p2505314051.jpg')
-    img.add_comment_title('im a comment title')
+    img = Img('/home/xy/workspace/onelook/onelook/templates/statics/poster_img/p2410383586.jpg')
+    img.reset_size()
