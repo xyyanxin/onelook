@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-02 11:33:18
+Last modified: 2018-03-02 14:05:39
 Python release: 3.4.3
 """
 import os
@@ -60,25 +60,22 @@ class Movie(object):
         '''
         the_movie = Movie.query_movie(subject_id)
         url_list = Movie.filter_poster_url(subject_id)
-        ret = []
-        for url in url_list:
+        for index,url in enumerate(url_list):
             img_name = get_url_name(url)
             poster_path = os.path.join( current_app.root_path, \
                     'templates','statics', 'poster_img', \
                     '{img_name}'.format(img_name=img_name))
             download_img(poster_path,url)
             img = Img(poster_path)
-            current_app.logger.info('start reset size')
             img.reset_size()
+            if index == 0:
+                # 对首张图片进行模糊并加入文字
+                img.gauss_blur(1)
+                img.add_score('<<{0}>>|豆瓣评分:{1}'.format(the_movie['name'],the_movie['average']))
+                comment_title = '\n'.join(the_movie['comment_title'])
+                img.add_comment_title(comment_title)
+            # 加入logo
             img.add_logo()
-            ret.append(poster_path)
-        # 对首张图片进行模糊并加入文字
-        img = Img(ret[0])
-        img.reset_size()
-        img.gauss_blur(1)
-        img.add_score('<<{0}>>|豆瓣评分:{1}'.format(the_movie['name'],the_movie['average']))
-        comment_title = '\n'.join(the_movie['comment_title'])
-        img.add_comment_title(comment_title)
 
 
     @staticmethod
