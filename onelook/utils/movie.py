@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-02 14:24:56
+Last modified: 2018-03-02 15:26:21
 Python release: 3.4.3
 """
 import os
@@ -20,8 +20,7 @@ class Movie(object):
 
     def __init__(self,date_obejct):
         the_movie = Movie.one_day_one_movie(date_obejct)
-        # TODO test dt_view
-        if the_movie.get('dt_view',None) == '20180302':
+        if the_movie.get('dt_view',None) is None:
             Movie.process_poster_image(the_movie['subject_id'])
             Movie.update_dt_view(the_movie['subject_id'])
 
@@ -29,6 +28,7 @@ class Movie(object):
         self.name = the_movie['name']
         self.image_detail = the_movie['image_detail']
         self.comment_title = the_movie['comment_title']
+        self.thunder_url = the_movie['thunder_url']
         self.poster_store_path = Movie.get_poster_store_path(self.subject_id)
 
 
