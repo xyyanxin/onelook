@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-05 13:50:30
+Last modified: 2018-03-05 14:32:31
 Python release: 3.4.3
 """
 import os
@@ -20,13 +20,15 @@ class Movie(object):
 
     def __init__(self,date_obejct):
         the_movie = Movie.one_day_one_movie(date_obejct)
+        img_exist = os.path.exists(
+                os.path.join(current_app.root_path,'templates','statics','poster_img',
+                    get_url_name(Movie.filter_poster_url(the_movie['subject_id'])[0]))
+                )
+
         if the_movie.get('dt_view',None) is None:
             Movie.process_poster_image(the_movie['subject_id'])
             Movie.update_dt_view(the_movie['subject_id'])
-
-        if not os.path.exists(
-                os.path.join(current_app.root_path,'templates','statics','poster_img',the_movie['image_detail'][0])
-                ):
+        if not img_exist:
             Movie.process_poster_image(the_movie['subject_id'])
 
         self.subject_id = the_movie['subject_id']
