@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-02 15:26:21
+Last modified: 2018-03-05 11:51:25
 Python release: 3.4.3
 """
 import os
@@ -28,7 +28,7 @@ class Movie(object):
         self.name = the_movie['name']
         self.image_detail = the_movie['image_detail']
         self.comment_title = the_movie['comment_title']
-        self.thunder_url = the_movie['thunder_url']
+        self.thunder_url = the_movie.get('thunder_url','管理员太他妈懒，还没有添加迅雷链接')
         self.poster_store_path = Movie.get_poster_store_path(self.subject_id)
 
 
