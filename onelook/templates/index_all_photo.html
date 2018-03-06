@@ -38,15 +38,17 @@
               <h1> 一见|光影|如故</h1>
               <p> 每天一部豆瓣高分</p>
               <p> 不负你的电影时光</p>
+         </div>
+
+		<div class="jumbotron masthead" style="padding-top: 15px;padding-bottom: 2px;">
               {% if item %}
               <p>《{{item.name}}》| 豆瓣：{{item.average}}分</p>
-              <p> 他们说：{{" | ".join(item.comment_title)}}</p>
+<!--               <p>他们说： {{"|".join(item.comment_title)}}</p> -->
               {% else %}
               <p> --| --</p>
               {% endif %}
              
          </div>
-
          <!-- 选择按钮 -->
         <!--  <p>
            <button type="button" class="btn btn-primary btn-lg" >next</button>
@@ -64,29 +66,33 @@
 
          <div class="row" style="margin-top: 30px;">
             <div class="col-md-6 " style="margin-top: 10px;" >
-               <button type="button" style="width: 35%;" class="btn btn-primary btn-lg center-block" 
+               	<button type="button" style="width: 35%;" class="btn btn-primary btn-lg center-block" 
                   title="popover title" data-container="body" data-toggle="popover" data-placement="bottom"
-                  data-content="复制成功，去迅雷粘贴即可" onClick="copyUrl('url1')" >普清版 | 543MB</button>
+                  data-content="复制成功，去迅雷粘贴即可" onClick="copyUrl('url1')" >PC端</button>
+                           <!-- 这是段url的文本 -->
+	         	<textarea cols="20" rows="10" id="url1" style="opacity: 0;" >
+	         	{{item.thunder_url}}
+	         	</textarea>
             </div>
             <div class="col-md-6 " style="margin-top: 10px;" >
                <button type="button" style="width: 35%;" class="btn btn-primary btn-lg center-block" 
-               	  title="popover title" data-container="body" data-toggle="popover" data-placement="bottom"
-                  data-content="最近懒，高清版稍后再上线～" onClick="copyUrl('url2')" >高清版 | 3.61GB</button>
+               	  title="请复制下面的迅雷链接：" data-container="body" data-toggle="popover" data-placement="bottom"
+                  data-content="{{item.thunder_url}}" >手机端</button>
             </div>
          </div>
 
 
 
          <!-- 这里是footer -->
-         <div style="margin-top:100px;" class="container-fluid">
+         <div class="container-fluid">
             <hr>
 		        <p style="text-align: right;">
-		           xy_version_6.4 | 2018.02.24
+		           20180306 | version 1.1
 		        </p>
 
          </div>
 
-
+<!-- 
          <!-- 测试弹出框 -->
          <script>
          $(function (){
@@ -94,18 +100,6 @@
          });
          </script>
          <!-- 测试弹出框 -->
-
-
-
-         <!-- 这是两段url的文本 -->
-         <textarea cols="20" rows="10" id="url1" style="opacity: 0;" >
-         {{item.thunder_url}}
-         </textarea>
-         <textarea cols="20" rows="10" id="url2" style="opacity: 0;" >
-         最近有点忙，稍后上线。。。
-         </textarea>
-         <!-- 这是两段url的文本 -->
-
       </div>
 
    </body>
