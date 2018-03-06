@@ -4,7 +4,7 @@ Program: onelook
 Description: app
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-02 11:55:15
-Last modified: 2018-03-02 15:27:05
+Last modified: 2018-03-06 15:34:30
 Python release: 3.4.3
 """
 import os
@@ -35,5 +35,6 @@ def index():
     item['comment_title'] = the_movie.comment_title
     item['img_store_path'] = the_movie.poster_store_path
     item['thunder_url'] = the_movie.thunder_url
+    item['average'] = the_movie.average
 
-    return render_template('index.html',item=item)
+    return render_template('index_all_photo.html',item=item)

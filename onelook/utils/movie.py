@@ -4,7 +4,7 @@ Program: onelook
 Description: movie helper
 Author: XY - mailyanxin@gmail.com
 Date: 2018-03-01 11:05:17
-Last modified: 2018-03-05 14:32:31
+Last modified: 2018-03-06 15:34:14
 Python release: 3.4.3
 """
 import os
@@ -37,6 +37,7 @@ class Movie(object):
         self.comment_title = the_movie['comment_title']
         self.thunder_url = the_movie.get('thunder_url','管理员太他妈懒，还没有添加迅雷链接')
         self.poster_store_path = Movie.get_poster_store_path(self.subject_id)
+        self.average = the_movie['average']
 
 
     @staticmethod
@@ -75,15 +76,15 @@ class Movie(object):
                     '{img_name}'.format(img_name=img_name))
             download_img(poster_path,url)
             img = Img(poster_path)
-            img.reset_size()
-            if index == 0:
-                # 对首张图片进行模糊并加入文字
-                img.gauss_blur(1)
-                img.add_score('<<{0}>>|豆瓣评分:{1}'.format(the_movie['name'],the_movie['average']))
-                comment_title = '\n'.join(the_movie['comment_title'])
-                img.add_comment_title(comment_title)
-            # 加入logo
-            img.add_logo()
+            #img.reset_size()
+            #if index == 0:
+            #    # 对首张图片进行模糊并加入文字
+            #    img.gauss_blur(1)
+            #    img.add_score('<<{0}>>|豆瓣评分:{1}'.format(the_movie['name'],the_movie['average']))
+            #    comment_title = '\n'.join(the_movie['comment_title'])
+            #    img.add_comment_title(comment_title)
+            ## 加入logo
+            #img.add_logo()
 
 
     @staticmethod
@@ -127,3 +128,7 @@ class Movie(object):
     def query_movie(subject_id):
         the_movie = mongo_db.movie.find_one({'subject_id': subject_id})
         return the_movie
+
+    @staticmethod
+    def scrapy_poster_image(subject_id):
+        pass
